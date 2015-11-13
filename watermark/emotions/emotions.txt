@@ -1,0 +1,22 @@
+{
+results: [
+{
+faceRectangle: {
+height: 436,
+left: 79,
+top: 111,
+width: 436
+},
+scores: {
+anger: 0.0000529283825,
+contempt: 0.00005763717,
+disgust: 4.554899e-7,
+fear: 0.0007889304,
+happiness: 0.0001788776,
+neutral: 0.3768241,
+sadness: 0.622083068,
+surprise: 0.000014033054
+}
+}
+]
+}
