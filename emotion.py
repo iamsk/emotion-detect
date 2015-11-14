@@ -27,5 +27,8 @@ def detect2(_file):
 
 
 if __name__ == '__main__':
+    import time
     url = 'http://d31axo86ooexlu.cloudfront.net/moments/5644bb01d113f140d5ad985f_final.jpg'
+    a = time.time()
     print detect(url)
+    print time.time() -a
