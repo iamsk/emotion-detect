@@ -1,34 +1,28 @@
-import httplib
-import json
 import requests
 
 from config import KEY
 
 
-def detect(_url):
-    headers = {'Ocp-Apim-Subscription-Key': KEY}
-    body = {"url": _url}
-    try:
-        conn = httplib.HTTPSConnection('api.projectoxford.ai')
-        conn.request("POST", "/emotion/v1.0/recognize", json.dumps(body), headers)
-        response = conn.getresponse()
-        data = response.read()
-        conn.close()
-        return data
-    except Exception as e:
-        print e
-        return None
-
-
-def detect2(_file):
-    headers = {'Ocp-Apim-Subscription-Key': KEY, 'Content-Type': 'application/octet-stream'}
-    res = requests.post(url='https://api.projectoxford.ai/emotion/v1.0/recognize', data=_file, headers=headers)
-    return res.json()
+def detect(_file):
+    if isinstance(_file, str):
+        content_type = 'application/json'
+        d = {'json': {"url": _file}}
+    else:
+        content_type = 'application/octet-stream'
+        d = {'data': _file}
+    headers = {'Content-Type': content_type, 'Ocp-Apim-Subscription-Key': KEY}
+    params = {
+        'returnFaceId': 'false',
+        'returnFaceLandmarks': 'false',
+        'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise',
+    }
+    face_api_url = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect'
+    res = requests.post(url=face_api_url, params=params, headers=headers, **d).json()
+    if isinstance(res, dict):
+        return res
+    return res[0]['faceAttributes']['emotion']
 
 
 if __name__ == '__main__':
-    import time
-    url = 'http://d31axo86ooexlu.cloudfront.net/moments/5644bb01d113f140d5ad985f_final.jpg'
-    a = time.time()
+    url = 'https://how-old.net/Images/faces2/main007.jpg'
     print detect(url)
-    print time.time() -a

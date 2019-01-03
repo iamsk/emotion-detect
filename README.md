@@ -6,6 +6,6 @@ Supported image formats include: JPEG, PNG, GIF(the first frame), BMP.
 ![1](1.png)
 ![2](2.png)
 
-Demo: http://emotion.juhuishijian.com/
+Demo: http://emotion.iamsk.info/
 
-Refs: https://www.projectoxford.ai/demo/emotion#detection
+Refs: https://docs.microsoft.com/zh-cn/azure/cognitive-services/face/overview
