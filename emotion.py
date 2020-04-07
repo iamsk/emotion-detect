@@ -16,7 +16,7 @@ def detect(_file):
         'returnFaceLandmarks': 'false',
         'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise',
     }
-    face_api_url = 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect'
+    face_api_url = 'https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect'
     res = requests.post(url=face_api_url, params=params, headers=headers, **d).json()
     if isinstance(res, dict):
         return res
